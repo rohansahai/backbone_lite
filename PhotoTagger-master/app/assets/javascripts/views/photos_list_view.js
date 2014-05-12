@@ -7,11 +7,11 @@
 
   _.extend(PhotosListView.prototype, {
     render: function(){
-      this.$el.html("<ul id='photos'></ul>");
+      var listPhotos = $("<ul id='photos'></ul>");
       Tagger.Photo.all.forEach(function(photo){
-        debugger
-        $('#photos').append('<li>' + photo.attributes.title + '</li>');
+        listPhotos.append('<li>' + photo.attributes.title + '</li>');
       });
+      this.$el.html(listPhotos);
       return this;
     }
   });

@@ -15,8 +15,8 @@
           response.forEach(function(photo){
             var newPhoto = new Photo(photo);
             Photo.all.push(newPhoto)
-            callback(newPhoto); //may want to push into an array
           });
+          callback(); //may want to push into an array
         }
       });
     },
