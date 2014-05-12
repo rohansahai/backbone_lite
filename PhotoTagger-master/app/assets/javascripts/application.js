@@ -21,66 +21,12 @@
 //= require_tree ../templates
 //
 //= require_tree .
-(function(root){
-  var Tagger = root.Tagger = (root.Tagger || {})
-  var Photo = Tagger.Photo = function(attrs) {
-    this.attributes = attrs;
-  }
 
-  _.extend(Photo, {
-    fetchByUserId: function(userId, callback){
-      $.ajax({
-        method: 'GET',
-        url: 'api/users/' + userId + "/photos",
-        success: function(response){
-          response.forEach(function(photo){
-            callback(new Photo(photo)); //may want to push into an array
-          });
-        }
-      });
-    }
+
+Tagger.initialize = function (){
+  Tagger.Photo.fetchByUserId(CURRENT_USER_ID, function(){
+    var photoListView = new Tagger.PhotosListView();
+    $('#content').append(photoListView.render().$el);
   });
 
-  _.extend(Photo.prototype, {
-    get: function(attr_name){
-      return this.attributes[attr_name];
-    },
-    set: function(attr_name, value){
-      this.attributes[attr_name] = value;
-    },
-    create: function(callback){
-      var that = this;
-      if (!this.attributes.id){
-        $.ajax({
-          url: 'api/photos',
-          method: 'POST',
-          data: {
-            photo: this.attributes
-          },
-          success: function(response){
-            _.extend(that.attributes, response);
-            callback(response)
-          }
-        });
-      }
-    },
-    save: function(callback){
-      if (this.attributes.id){
-        $.ajax({
-          url: 'api/photos/' + this.attributes.id,
-          method: 'PATCH', //might need to change this?!?
-          data: {
-            photo: this.attributes
-          },
-          success: function(response){
-            _.extend(this.attributes, response);
-            callback(response);
-          }
-        });
-      } else {
-        this.create(callback);
-      }
-    }
-
-  });
-})(this)
+};
