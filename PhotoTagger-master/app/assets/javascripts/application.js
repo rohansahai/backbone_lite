@@ -27,6 +27,20 @@
     this.attributes = attrs;
   }
 
+  _.extend(Photo, {
+    fetchByUserId: function(userId, callback){
+      $.ajax({
+        method: 'GET',
+        url: 'api/users/' + userId + "/photos",
+        success: function(response){
+          response.forEach(function(photo){
+            callback(new Photo(photo)); //may want to push into an array
+          });
+        }
+      });
+    }
+  });
+
   _.extend(Photo.prototype, {
     get: function(attr_name){
       return this.attributes[attr_name];
