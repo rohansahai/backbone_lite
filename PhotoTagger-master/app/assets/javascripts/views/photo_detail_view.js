@@ -6,6 +6,8 @@
     this.$el = $("<div></div>");
     this.template = JST['photo_detail'];
 
+    this.$el.on("click", "a#photosListView", this.showList.bind(this));
+    this.$el.on("click", "img", this.popTagSelectView.bind(this));
     //Tagger.Photo.on('add', this.render.bind(this));
   };
 
@@ -17,6 +19,13 @@
       });
       this.$el.html(renderedTemplate);
       return this
+    },
+    popTagSelectView: function(event){
+      console.log(event.offsetX, event.offsetY);
+    },
+    showList: function (event) {
+      event.preventDefault();
+      Tagger.showPhotosIndex();
     }
   });
 
