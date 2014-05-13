@@ -33,6 +33,15 @@
       this._events[eventName].forEach(function(eventCallback){
         eventCallback();
       })
+    },
+
+    find: function(photoId){
+      var photos = Photo.all;
+      for (var i = 0; i < photos.length; i++) {
+        if (photos[i].id === photoId){
+          return photos[i];
+        }
+      }
     }
   });
 

@@ -24,6 +24,10 @@
 
 
 Tagger.initialize = function (){
+  Tagger.showPhotosIndex();
+};
+
+Tagger.showPhotosIndex = function(){
   Tagger.Photo.fetchByUserId(CURRENT_USER_ID, function(){
     var photoListView = new Tagger.PhotosListView();
     var photoFormView = new Tagger.PhotoFormView();
@@ -31,3 +35,8 @@ Tagger.initialize = function (){
     $('#content').append(photoFormView.render().$el);
   });
 };
+
+Tagger.showPhotoDetail = function(photo){
+  var photoDetailView = new PhotoDetailview(photo);
+  $('#content').append(photoDetailView.render().$el);
+}
