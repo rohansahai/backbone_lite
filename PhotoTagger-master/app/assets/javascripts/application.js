@@ -31,7 +31,7 @@ Tagger.showPhotosIndex = function(){
   Tagger.Photo.fetchByUserId(CURRENT_USER_ID, function(){
     var photoListView = new Tagger.PhotosListView();
     var photoFormView = new Tagger.PhotoFormView();
-    $('#content').append(photoListView.render().$el);
+    $('#content').html(photoListView.render().$el);
     $('#content').append(photoFormView.render().$el);
   });
 };
