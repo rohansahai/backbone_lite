@@ -20,6 +20,20 @@
         }
       });
     },
+
+    _events: {},
+
+    on: function(eventName, callback){
+      this._events[eventName] = this._events[eventName] || [];
+      this._events[eventName].push(callback);
+    },
+
+    trigger: function(eventName){
+      // var args = [].call(arguments.slice(1));
+      this._events[eventName].forEach(function(eventCallback){
+        eventCallback();
+      })
+    }
   });
 
   _.extend(Photo.prototype, {
@@ -40,6 +54,8 @@
           },
           success: function(response){
             _.extend(that.attributes, response);
+            Photo.all.push(that);
+            Photo.trigger('add');
             callback(response)
           }
         });

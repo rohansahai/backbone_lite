@@ -3,6 +3,7 @@
 
   var PhotosListView = Tagger.PhotosListView = function (){
     this.$el = $("<div></div>");
+    Tagger.Photo.on('add', this.render.bind(this));
   };
 
   _.extend(PhotosListView.prototype, {
