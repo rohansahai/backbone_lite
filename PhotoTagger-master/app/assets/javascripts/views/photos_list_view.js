@@ -4,7 +4,6 @@
   var PhotosListView = Tagger.PhotosListView = function (){
     this.$el = $("<div></div>");
     Tagger.Photo.on('add', this.render.bind(this));
-    this.$el.on("click", "a", this.showDetail.bind(this));
     this.$el.on("click", "img", this.popTagSelectView.bind(this));
   };
 
@@ -25,8 +24,5 @@
       var photo = Tagger.Photo.find(parseInt($currentTarget.attr("data-id")));
       Tagger.showPhotoDetail(photo);
     },
-    popTagSelectView: function(event){
-      console.log(event.offsetX, event.offsetY);
-    }
   })
 })(this)
