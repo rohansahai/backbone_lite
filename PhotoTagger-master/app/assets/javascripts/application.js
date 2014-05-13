@@ -38,5 +38,5 @@ Tagger.showPhotosIndex = function(){
 
 Tagger.showPhotoDetail = function(photo){
   var photoDetailView = new Tagger.PhotoDetailView(photo);
-  $('#content').append(photoDetailView.render().$el);
+  $('#content').html(photoDetailView.render().$el);
 }
