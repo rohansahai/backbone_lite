@@ -38,7 +38,7 @@
     find: function(photoId){
       var photos = Photo.all;
       for (var i = 0; i < photos.length; i++) {
-        if (photos[i].id === photoId){
+        if (photos[i].attributes.id === photoId){
           return photos[i];
         }
       }

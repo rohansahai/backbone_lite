@@ -16,7 +16,7 @@
         photo: this.photo
       });
       this.$el.html(renderedTemplate);
-      this.$el.submit('#fighter-form', this.handleFighterCreate.bind(this));
+      return this
     }
   });
 

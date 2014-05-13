@@ -11,7 +11,7 @@
     render: function(){
       var listPhotos = $("<ul id='photos'></ul>");
       Tagger.Photo.all.forEach(function(photo){
-        listPhotos.append('<li> <a data-id='+ photo.id + ' href=#>' + photo.attributes.title + '</a></li>');
+        listPhotos.append('<li> <a data-id='+ photo.attributes.id + ' href=#>' + photo.attributes.title + '</a></li>');
       });
       this.$el.html(listPhotos);
       return this;
