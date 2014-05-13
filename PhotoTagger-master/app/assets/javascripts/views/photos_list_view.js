@@ -4,7 +4,7 @@
   var PhotosListView = Tagger.PhotosListView = function (){
     this.$el = $("<div></div>");
     Tagger.Photo.on('add', this.render.bind(this));
-    $('a').click(this.showDetail.bind(this))
+    this.$el.on("click", "a", this.showDetail.bind(this));
   };
 
   _.extend(PhotosListView.prototype, {
@@ -17,8 +17,12 @@
       return this;
     },
     showDetail: function(event){
+      // Use the data-id stored in the a tag to lookup the proper photo (want
+      //to write a Photo::find method now?), and then pass it to showPhotoDetail.
       event.preventDefault();
-      console.log(event);
+      var $currentTarget = $(event.currentTarget);
+      var photo = Tagger.Photo.find(parseInt($currentTarget.attr("data-id")));
+      Tagger.showPhotoDetail(photo);
       console.log('hello');
     }
   })

@@ -1,3 +1,5 @@
-<h1> <%=photo.title  %> </h1>
+<h1> <%= photo.get("title")  %> </h1>
 
-<img src=<%= photo.url %>></img>
+<img src=<%= photo.get("url") %>></img>
+
+<a href="#" id="photosListView">Back!</a>
